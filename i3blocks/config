@@ -1,0 +1,64 @@
+# i3blocks config file
+#
+# Please see man i3blocks for a complete reference!
+# The man page is also hosted at http://vivien.github.io/i3blocks
+#
+# List of valid properties:
+#
+# align
+# color
+# command
+# full_text
+# instance
+# interval
+# label
+# min_width
+# name
+# separator
+# separator_block_width
+# short_text
+# signal
+# urgent
+
+# Global properties
+#
+# The top properties below are applied to every block, but can be overridden.
+# Each block command defaults to the script name to avoid boilerplate.
+# Change $SCRIPT_DIR to the location of your scripts!
+#SCRIPT_DIR=/home/vinicius/.config/i3/blocklets
+command=/home/vinicius/.config/i3/blocklets/$BLOCK_NAME
+separator_block_width=15
+markup=none
+
+[cpu_util_detailed]
+command=/home/vinicius/.config/i3/blocklets/cpu_util_detailed
+label=CPU
+markup=pango
+interval=-2
+
+[memory]
+label=MEM
+command=/home/vinicius/.config/i3/blocklets/memory
+interval=30
+#separator=<
+
+[volume]
+label=♪
+interval=10
+signal=10
+#STEP=5%
+
+[time]
+command=date '+%d/%m %H:%M'
+interval=5
+align=center
+
+[mediaplayer]
+instance=spotify
+interval=5
+signal=10
+
+[battery2]
+command=/home/vinicius/.config/i3/blocklets/battery2
+markup=pango
+interval=30
