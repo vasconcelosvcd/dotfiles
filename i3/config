@@ -3,7 +3,8 @@
 
 ##setup autostart
 exec --no-startup-id bash ~/.config/i3/autostart.sh
-
+exec_always xset s off
+exec_always xset -dpms
 
 #disable border
 #for_window [class=".*"] border pixel 0
@@ -22,7 +23,7 @@ smart_borders on
 # Activate smart borders (only when there are effectively no gaps)
 smart_borders no_gaps
 
-gaps inner 28
+gaps inner 8
 gaps outer 0
 
 border_radius 4
@@ -66,7 +67,7 @@ set $terminator kitty
 
 #font pango:DejaVu Sans Mono 12
 #font pango:Meslo LG L Regular Nerd Font Complete 12
-font pango:Overpass Heavy 14
+font pango:Overpass Heavy 16
 #font pango:Hasklug Nerd Font Mono 10
 
 
@@ -79,7 +80,7 @@ bindsym $mod+x exec $terminator
 
 # Custom bindsyms
 bindsym $mod+p exec ~/.config/i3/bin/logout
-bindsym $mod+l exec i3lock -i /home/vinicius/Pictures/linuxtux.png
+bindsym $mod+l exec i3lock-fancy
 bindsym $mod+c exec google-chrome
 bindsym $mod+r mode "resize"
 bindsym $mod+Shift+f exec /home/vinicius/.config/i3/bin/rofifinder
@@ -120,6 +121,9 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
+# move focused workspace between monitors
+bindsym $mod+Ctrl+greater move workspace to output right
+bindsym $mod+Ctrl+less move workspace to output left
 
 # split in horizontal orientation
 bindsym $mod+h split h
@@ -190,6 +194,10 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
+#re-run panel xrandr for hotpluginconfig
+bindsym $mod+Shift+m exec "zsh -c panel"
+bindsym $mod+Shift+n exec "zsh -c single-panel"
+
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -236,7 +244,7 @@ bar {
     status_command i3blocks
     position top
     height 24
-    font pango:Overpass SemiBold 13
+    font pango:Overpass Heavy 16
 #    separator_symbol "<"
 #    separator_block_width 12
 
