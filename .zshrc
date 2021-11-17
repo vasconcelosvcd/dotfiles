@@ -132,10 +132,15 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-
-
 #aliases 
 alias 2k='cd ~/workspace/mindera/2k'
-alias panel='xrandr --output HDMI-0 --mode 3440x1440 --rate 99.98 &&  xrandr --output eDP-1-1 --off'
+alias panel='xrandr --output HDMI-0 --mode 3440x1440 &&  xrandr --output eDP-1-1 --off'
 alias single-panel='xrandr --output eDP-1-1 --mode 1920x1080'
-alias open="gio open ."
+alias double-panel='xrandr --output eDP-1-1 --mode 1920x1080 && xrandr --output HDMI-0 --mode 1920x1080 --left-of eDP-1'
+alias double-grand-panel='xrandr --output eDP-1-1 --mode 1920x1080 && xrandr --output HDMI-0 --mode 3440x1440 --rate 99.98 --right-of eDP-1-1'
+
+export LANG=pt_BR.UTF-8
+[[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
+
+# Added by serverless binary installer
+export PATH="$HOME/.serverless/bin:$PATH"
