@@ -23,29 +23,36 @@ smart_borders on
 # Activate smart borders (only when there are effectively no gaps)
 smart_borders no_gaps
 
-gaps inner 8
-gaps outer 0
+new_window pixel 2
 
-border_radius 4
+gaps inner 5
+gaps outer 2
+
+#border_radius 4
 
 
 
 ##### COLORS #######################################
 
-set_from_resource $darkred     color1  #000000
-set_from_resource $red         color9  #000000
-set_from_resource $darkgreen   color2  #000000
-set_from_resource $green       color10 #000000
-set_from_resource $darkyellow  color3  #000000
-set_from_resource $yellow      color11 #000000
-set_from_resource $darkblue    color4  #000000
-set_from_resource $blue        color12 #000000
-set_from_resource $darkmagenta color5  #000000
-set_from_resource $magenta     color13 #000000
-set_from_resource $darkcyan    color6  #000000
-set_from_resource $cyan        color14 #000000
-set_from_resource $darkwhite   color7  #000000
-set_from_resource $white       color15 #000000
+set $darkbluetrans	#08052be6
+set $darkblue		#08052b
+set $lightblue		#5294e2
+set $urgentred		#e53935
+set $white		#ffffff
+set $black		#000000
+set $purple		#e345ff
+set $darkgrey		#383c4a
+set $grey		#b0b5bd
+set $mediumgrey		#8b8b8b
+set $yellowbrown	#e1b700
+
+# define colors for windows:
+#class		        	border		bground		text		indicator	child_border
+client.focused          #BD93F9 #6272A4 #F8F8F2 #BD93F9   #BD93F9
+client.focused_inactive #6272A4  #44475A #F8F8F2 #6272A4  #6272A4 
+client.unfocused        #6272A4 #282A36 #BFBFBF  #6272A4  #6272A4
+client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
 
 # Use custom colors for black
  set $black       #282828
@@ -66,8 +73,9 @@ set $terminator kitty
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 
 #font pango:DejaVu Sans Mono 12
-#font pango:Meslo LG L Regular Nerd Font Complete 12
-font pango:Overpass Heavy 16
+font pango:Meslo LG L Regular Nerd Font Complete 12
+#font pango:Overpass Heavy 12
+#font pango:SF Pro Display Heavy 12
 #font pango:Hasklug Nerd Font Mono 10
 
 
@@ -83,7 +91,7 @@ bindsym $mod+p exec ~/.config/i3/bin/logout
 bindsym $mod+l exec i3lock-fancy
 bindsym $mod+c exec google-chrome
 bindsym $mod+r mode "resize"
-bindsym $mod+Shift+f exec /home/vinicius/.config/i3/bin/rofifinder
+bindsym $mod+Shift+f exec /home/vasconcelosvcd/.config/i3/bin/rofifinder
 
 
 # Enable Print Screen
@@ -94,9 +102,8 @@ bindsym --release $mod+Print exec shutter -s
 bindsym $mod+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id ~/.config/i3/bin/rofi_app_launcher
-
-
+bindsym $mod+d exec rofi -modi drun -show drun -config ~/.config/rofi/rofidmenu.rasi 
+bindsym $mod+Shift+d exec rofi -show window -config ~/.config/rofi/rofidmenu.rasi
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+k focus down
@@ -240,27 +247,26 @@ bindsym XF86MonBrightnessUp exec sudo ybacklight -inc 5 # increase screen bright
 bindsym XF86MonBrightnessDown exec sudo ybacklight -dec 5 # decrease screen brightness
 
 # i3blocks
-bar {
-    status_command i3blocks
-    position top
-    height 24
-    font pango:Overpass Heavy 16
-#    separator_symbol "<"
-#    separator_block_width 12
+# bar {
+#     status_command i3blocks
+#     position top
+#     height 24
+#     font pango:Overpass Bold 13
+# #     separator_symbol "|"
+# #     separator_block_width 12
 
-#    colors {
-#        separator #081419
-#        background #253941
-#        statusline #839496
-#        focused_workspace #fdf6e3 #6c71c4 #fdf6e3
-#        active_workspace #fdf6e3 #6c71c4 #fdf6e3
-#        inactive_workspace #002b36 #586e75 #002b36
-#        urgent_workspace #d33682 #d33682 #fdf6e3
-
-#        statusline         $white
-#        separator          $transparent
+# #     colors {
+# #         separator #FFFFFF
+# #         background #253941
+# #         statusline #839496
+# #         focused_workspace #fdf6e3 #6c71c4 #fdf6e3
+# #         active_workspace #fdf6e3 #6c71c4 #fdf6e3
+# #         inactive_workspace #002b36 #586e75 #002b36
+# #         urgent_workspace #d33682 #d33682 #fdf6e3
+# #         statusline         $white
+# #         separator          $transparent
+# #  }
 # }
-}
 
 
 set $m1 #808080 
@@ -268,10 +274,13 @@ set $m2 #FFF0E0
 
 # Startup programs
 exec --no-startup-id dunst 
+exec_always spotify-listener &;
 exec_always compton &;
-exec --no-startup-id clipit &; 
-exec_always feh --bg-scale --randomize /home/vinicius/Pictures/wallpapers/*
+exec --no-startup-id diodon &; 
+exec_always feh --bg-scale --randomize /home/vasconcelosvcd/Pictures/wallpapers/*
 exec_always --no-startup-id nm-applet
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
 
 
 # Bind App to workspace
