@@ -1,0 +1,8 @@
+
+
+# ignore gcloud
+gcloud/
+zed/
+
+
+iterm2/
