@@ -1,6 +1,29 @@
 -- since this is just an example spec, don't actually load anything here and return an empty spec
 -- stylua: ignore
-if true then return {} end
+if true then return {
+  {
+    'akinsho/bufferline.nvim',
+    -- TODO: Remove this once https://github.com/LazyVim/LazyVim/pull/6354 is merged
+    init = function()
+      local bufline = require('catppuccin.groups.integrations.bufferline')
+      bufline.get = bufline.get_theme
+    end,
+    ---@module 'bufferline'
+    ---@type bufferline.Config
+    opts = {
+      options = {
+        always_show_bufferline = true,
+        separator_style = 'thick',
+        hover = {
+          enabled = true,
+          delay = 120,
+          reveal = { 'close' }
+        }
+      }
+    }
+  }
+
+} end
 
 -- every spec file under the "plugins" directory will be loaded automatically by lazy.nvim
 --
