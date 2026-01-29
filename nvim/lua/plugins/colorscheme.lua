@@ -6,11 +6,15 @@ return {
   { "rebelot/kanagawa.nvim" },
   -- { "navarasu/onedark.nvim", opts = { style = "darker" } },
   { "navarasu/onedark.nvim", opts = {} },
+  { "sainnhe/everforest" },
+  { "sainnhe/sonokai" },
+  { "rebelot/kanagawa.nvim" },
+  { "sainnhe/edge" },
   -- Configure LazyVim to load gruvbox
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin",
+      colorscheme = "sonokai",
     },
   },
 }
